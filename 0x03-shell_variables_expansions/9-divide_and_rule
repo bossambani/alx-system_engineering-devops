@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 #!/bin/bash
 echo $((POWER/DIVIDE)
+=======
+#!/bin/bash
+echo $((POWER/DIVIDE))
+>>>>>>> 19c658c4d8da4c1643449d6d4b8e5c72e894e810
