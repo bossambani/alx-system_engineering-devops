@@ -1,22 +1,18 @@
 #!/usr/bin/env bash
-# This script displays numbers from 1 to 20 and specific messages for certain iterations.
+# Displays number from 1 to 20
+# display badluck for 5th iteration
+# display badlluck for 9th iteration
+# display badluck for 17th iteration
 
 count=1
+
 while [ $count -le 20 ]
-do
-    case $count in
-        4)
-            echo "$count and then bad luck from China"
-            ;;
-        9)
-            echo "$count and then bad luck from Japan"
-            ;;
-        17)
-            echo "$count and then bad luck from Italy"
-            ;;
-        *)
-            echo $count
-            ;;
-    esac
-    count=$((count + 1))
+do 
+	echo "$count"
+	case $count in
+	"4") echo "bad luck from China";;
+	"9") echo "bad luck from Japan";;
+	"17") echo "bad luck from Italy";;
+	esac
+	(( count++ ))
 done
