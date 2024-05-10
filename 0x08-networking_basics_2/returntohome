@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+#Bash script that configures my home address back to its initial address
+
+cp /etc/hosts ~/hosts.old
+localhost_mapping="127.0.0.1 localhost"
+facebook_mapping="157.240.229.35 facebook.com"
+
+echo"$localhost_mapping">~/hosts.old
+echo"$facebook_mapping">>~/hosts.old
+cp -f ~/hosts.old /etc/hosts
