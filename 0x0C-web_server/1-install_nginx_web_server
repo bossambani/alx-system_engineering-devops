@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+#Commands to Install nginx web server
+
+sudo apt-get update #Update package lists
+sudo apt-get upgrade #Upgrade all installed packages
+sudo apt-get install -y nginx # Install Nginx
+
+#Allow HTTP traffic throught the firewall
+sudo ufw allow 'Nginx HTTP'
+
+#give the current user ownership of the website files for easy editiong
+sudo chown -R "$USER":"$USER" /var/www/html
+sudo chmod -R 755 /var/www
+
+#create a "Hello World" HTML file
+echo "Hello World!" | sudo tee /var/www/html/index.html
+
+#Restart Nginx to apply changes
+sudo service nginx restart

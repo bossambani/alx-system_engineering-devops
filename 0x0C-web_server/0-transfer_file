@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 #Bash script that transfers a file from our client to a server
+#$1 - The file to be transferred
+#$2 - The IP of the server we want to transfer the file to
+#$3 - The username scp connects with
+#$4 - The path to the SSH private key that scp uses
 
 if [$# -lt 4]
 then
