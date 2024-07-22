@@ -20,8 +20,8 @@ frontend load_balancer
 
 backend webserver
         balance roundrobin
-        server 249644-web-01 100.25.35.26:80 check
-        server 249644-web-02 54.161.235.143:80 check
+        server 249644-web-01 52.91.153.44:80 check
+        server 249644-web-02 54.173.208.30:80 check
 EOL
 
 #restart the HAProxy
