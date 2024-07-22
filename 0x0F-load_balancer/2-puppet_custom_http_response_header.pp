@@ -5,8 +5,8 @@ exec { 'update system':
 }
 
 package { 'nginx':
-  ensure    => 'installed',
-  require   => Exec['update system'],
+  ensure  => 'installed',
+  require => Exec['update system'],
 }
 
 file {'/var/www/html/index.html':
