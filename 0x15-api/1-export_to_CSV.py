@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """Export to CSV"""
 
-import csv
 import requests
 import sys
 
@@ -22,9 +21,8 @@ if __name__ == '__main__':
     todos_response = requests.get(url + "todos", params=params)
     todos = todos_response.json()
 
-    with open("{}.csv".format(user_id), "w", newline="") as csvfile:
-        writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
-
+    with open("{}.csv".format(user_id), "w") as csvfile:
         for todo in todos:
-            writer.writerow([user_id, username, todo.get(
-                "completed"), todo.get("title")])
+            csvfile.write('"{}","{}","{}","{}"\n'
+                          .format(user_id, username, todo.get("completed"),
+                                  todo.get("title")))
