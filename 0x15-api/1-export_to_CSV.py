@@ -1,23 +1,28 @@
 #!/usr/bin/python3
-"""Exports data in the CSV format"""
+"""Export to CSV"""
 
-if __name__ == "__main__":
+import requests
+import sys
 
-    import csv
-    import requests
-    import sys
 
-    userId = sys.argv[1]
-    user = requests.get("https://jsonplaceholder.typicode.com/users/{}"
-                        .format(userId))
-    name = user.json().get('username')
-    todos = requests.get('https://jsonplaceholder.typicode.com/todos')
+if __name__ == '__main__':
+    url = "https://jsonplaceholder.typicode.com/"
 
-    filename = userId + '.csv'
-    with open(filename, mode='w') as f:
-        writer = csv.writer(f, delimiter=',', quotechar='"',
-                            quoting=csv.QUOTE_ALL, lineterminator='\n')
-        for task in todos.json():
-            if task.get('userId') == int(userId):
-                writer.writerow([userId, name, str(task.get('completed')),
-                                 task.get('title')])
+    user_id = sys.argv[1]
+
+    user_response = requests.get(url + "users/{}".format(user_id))
+
+    user = user_response.json()
+
+    username = user.get("username")
+
+    params = {"userId": user_id}
+
+    todos_response = requests.get(url + "todos", params=params)
+    todos = todos_response.json()
+
+    with open("{}.csv".format(user_id), "w") as csvfile:
+        for todo in todos:
+            csvfile.write('"{}","{}","{}","{}"\n'
+                          .format(user_id, username, todo.get("completed"),
+                                  todo.get("title")))
