@@ -16,7 +16,7 @@ if __name__ == '__main__':
     todos_response = requests.get(url + "todos", params=params)
     todos = todos_response.json()
 
-    completed = [todo.get("title") for todo in todos if todo.get("completed")]
+    completed = [todo.get("title") for todo in todos if todo.get("completed") is True]
 
     print("Employee {} is done with tasks({}/{}):".format(
         user.get("name"), len(completed), len(todos)))
