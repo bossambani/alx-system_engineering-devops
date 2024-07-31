@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""Export to CSV"""
 
 import csv
 import requests
@@ -11,7 +12,7 @@ if __name__ == '__main__':
     user_id = sys.argv[1]
 
     user_response = requests.get(url + "users/{}".format(user_id))
-    
+
     user = user_response.json()
 
     username = user.get("username")
@@ -25,4 +26,5 @@ if __name__ == '__main__':
         writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
 
         for todo in todos:
-            writer.writerow([user_id, username, todo.get("completed"), todo.get("title")])
+            writer.writerow([user_id, username, todo.get(
+                "completed"), todo.get("title")])
