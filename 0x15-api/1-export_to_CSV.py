@@ -1,4 +1,3 @@
-
 #!/usr/bin/python3
 """Exports to CSV"""
 
@@ -20,4 +19,3 @@ if __name__ == '__main__':
             file.write('"{}","{}","{}","{}"\n'
                        .format(user_id, username, task.get('completed'),
                                task.get('title')))
-
