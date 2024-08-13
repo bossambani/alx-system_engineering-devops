@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+#Configure your Nginx server so that /redirect_me is redirecting to another page
+#Configure your Nginx server to have a custom 404 page that contains the string Ceci n'est pas une page
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install -y nginx
+
+echo "Hello World!" | sudo tee /var/www/html/index.html
+
+sudo chmod 777 /etc/nginx/sites-available
+
+sudo chmod 777 /etc/nginx/sites-available/default
+
+sudo sed -i "/listen 80 default_server;/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;" /etc/nginx/sites-available/default
+
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
+
+sed -i "/listen 80 default_server; /a error_page /404.html;" /etc/nginx/sites-available/default
+
+sudo nginx -t
+sudo service nginx restart

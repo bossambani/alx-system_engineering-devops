@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+#configure web-01 to have the custom HTTP response header
+
+#update and upgrade the packages and install nginx
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install -y nginx
+
+#creating an index page
+echo "Hello World!" | sudo tee /var/www/htm/index.html
+
+#performing a redirection
+sudo sed -i "/listen 80 default_server;/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;" /etc/nginx/sites-available/default
+
+#creating Error 404
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
+
+sed -i "/listen 80 default_server; /a error_page /404.html;" /etc/nginx/sites-available/default
+
+#custom HTTP response header
+sudo sed -i "/server_name _;/a add_header X-Served-By $HOSTNAME;" /etc/nginx/sites-enabled/default
+
+#testing for syntax error
+sudo nginx -t
+
+#restart the server
+sudo service nginx restart
