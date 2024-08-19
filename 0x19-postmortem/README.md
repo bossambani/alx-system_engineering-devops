@@ -1,10 +1,10 @@
-#0x19-postmortem Apache Server not Running
+# 0x19-postmortem Apache Server not Running
 ![Server Diagram](./Apache_Visuals.webp)
 
-#Issue Summary:
+# Issue Summary:
 On August 17, 2024, an outage occurred on our Apache server, resulting in downtime from 2:00 PM to 3:30 PM UTC. During this period, 80% of our users were impacted, experiencing significant slowdowns and, in many cases, an inability to access the website. The root cause of the outage was traced back to a misconfiguration in the Apache configuration file, specifically a missing closing tag. This syntax error caused the Apache server to fail during startup, leading to the service interruption.
 
-##Timeline:
+## Timeline:
 2:05 PM: The issue was first detected through an automated monitoring alert, which indicated that the website was unresponsive.
 	
 2:10 PM: The initial investigation began, focusing on potential network-related issues. Engineers examined the network logs and performance metrics but found no anomalies that could explain the outage.
@@ -19,10 +19,10 @@ On August 17, 2024, an outage occurred on our Apache server, resulting in downti
 
 3:30 PM: Full service was restored, and users were once again able to access the website without issue.
 
-##Root Cause and Resolution:
+## Root Cause and Resolution:
 The root cause of the outage was a simple but critical syntax error in the Apache configuration file. The missing closing tag prevented the Apache server from completing its startup sequence, rendering the web service unavailable. This type of error, while minor in nature, had a significant impact due to the importance of the server'srole in our web infrastructure. Once the syntax error was identified, the issue wasresolved by editing the configuration file to include the missing tag and restarting the Apache server.
 
-##Corrective and Preventative Measures:
+## Corrective and Preventative Measures:
 To prevent a recurrence of this issue, several corrective and preventative measures will be implemented:
 1.	Improve Configuration File Validation Processes: We will introduce a stricter validation process for configuration files before they are applied to production servers. This will involve using automated tools to check for syntax errors and other common issues that could cause server failures.
 2.	Implement Automated Configuration Checks: Automated checks will be implemented to validate configuration files before they are committed to the production environment. This includes running a test server with the new configuration to ensure it starts correctly.
