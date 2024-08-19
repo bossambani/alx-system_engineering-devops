@@ -1,4 +1,4 @@
-![Server Diagram](Apache Visuals.webp)
+![Server Diagram](./Apache_Visuals.webp)
 ##Issue Summary:
  On August 17, 2024, an outage occurred on our Apache server, resulting in downtime from 2:00 PM to 3:30 PM UTC. During this period, 80% of our users were impacted, experiencing significant slowdowns and, in many cases, an inability to access the website. The root cause of the outage was traced back to a misconfiguration in the Apache configuration file, specifically a missing closing tag. This syntax error caused the Apache server to fail during startup, leading to the service interruption.
 
